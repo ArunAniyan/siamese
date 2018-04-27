@@ -15,18 +15,28 @@ Find duplicate images using hash keys.
 
 ##### Compatibility : Python 2.7 & 3
 
+
+Requirements:
+* Imagehash == 4.0
+* Pillow == 4.1.1
+
+
+##### Virtual Environment Setup
+
+```bash
+pip install -r requirements.txt
+```
+
+
+
 #### " Find the needle from the haystack"
 
 Takes in a set of reference or training images from a single directory and searches same / similar images from another directory.
 
 To run the code :
-```
+```bash
 python duplicate_finder.py -r <training_directory> -t <test_directory>
 ```
 The results will be written to output.txt in the current directory.
 
 Result format -  <TestImage.> , <Duplicates..,>
-
-Requirements:
-* Imagehash == 4.0
-* Pillow == 4.1.1
