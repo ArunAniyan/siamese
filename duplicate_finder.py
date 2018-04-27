@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 """
 Solution for SARAO Data Science Technical Challenge
 ===================================================
@@ -31,10 +33,7 @@ Requirements:
 
 
 """ Imports """
-from __future__ import print_function
 
-from builtins import str
-from builtins import range
 import argparse
 from time import time
 import imagehash
