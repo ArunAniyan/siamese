@@ -1,22 +1,11 @@
 # Duplicate image Finder
+##### Version       : V.1.0
 
 Find duplicate images using hash keys. 
 
 
-##### Author        : Arun Aniyan
-
-##### Institution   : Rhodes University
-
-##### Contact       : aka.bhagya@gmail.com
-
-##### Date          : 24-04-18
-
-##### Version       : V.1.0
-
-##### Compatibility : Python 2.7 & 3
-
-
-Requirements:
+#### Requirements:
+* Python 2.7x or 3
 * Imagehash == 4.0
 * Pillow == 4.1.1
 
@@ -40,3 +29,18 @@ python duplicate_finder.py -r <training_directory> -t <test_directory>
 The results will be written to output.txt in the current directory.
 
 Result format -  <TestImage.> , <Duplicates..,>
+
+
+---
+
+##### Author        : Arun Aniyan
+
+##### Institution   : Rhodes University
+
+##### Contact       : aka.bhagya@gmail.com
+
+###### Last Update           : 24-04-18
+
+
+
+
