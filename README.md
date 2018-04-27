@@ -28,5 +28,5 @@ The results will be written to output.txt in the current directory.
 Result format -  <TestImage.> , <Duplicates..,>
 
 Requirements:
-* (Imagehash)[https://pypi.org/project/ImageHash/] == 4.0
+* Imagehash == 4.0
 * Pillow == 4.1.1
