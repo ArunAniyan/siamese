@@ -89,7 +89,7 @@ def find_duplicates(traindb, testdb):
     return originals, duplicates
 
 
-# Pretty Reformating
+# Pretty Reformating - Remove unwanted characters from list
 def reformat(reflist, duplist):
     l = reflist + ' ' + str(duplist)
     l = l.replace('[', '')
