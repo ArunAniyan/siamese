@@ -112,7 +112,7 @@ if __name__ == '__main__':
     refdir = args['train_directory']
     testdir = args['test_directory']
 
-    start_time = time()
+    start_time = time() # Start time for calculations
 
     # Get file list
     ref_files = traverse_dir(refdir)
@@ -140,7 +140,7 @@ if __name__ == '__main__':
     # Name of unique duplicate files
     duplicates = p_duplicates or d_duplicates
 
-    end_time = time()
+    end_time = time() # End time for calculations
 
     # Save results to output.txt
     for i in range(0, len(originals)):
