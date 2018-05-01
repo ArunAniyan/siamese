@@ -10,6 +10,16 @@ Find duplicate images using hash keys.
 * Pillow == 4.1.1
 
 
+##### Steps before running the code
+
+```bash
+git clone https://github.com/ArunAniyan/siamese.git
+
+cd siamese/ 
+```
+
+
+
 ##### Virtual Environment Setup
 
 ```bash
@@ -28,7 +38,7 @@ python duplicate_finder.py -r <training_directory> -t <test_directory>
 ```
 The results will be written to output.txt in the current directory.
 
-Result format -  <TestImage.> , <Duplicates..,>
+Result format -  <TrainImage.> , <Duplicates..,>
 
 
 ---
