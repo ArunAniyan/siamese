@@ -15,7 +15,6 @@ Find duplicate images using hash keys.
 ```bash
 git clone https://github.com/ArunAniyan/siamese.git
 
-cd siamese/ 
 ```
 
 
@@ -23,6 +22,8 @@ cd siamese/
 ##### Virtual Environment Setup
 
 ```bash
+virtualenv myenv
+. myenv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -34,6 +35,8 @@ Takes in a set of reference or training images from a single directory and searc
 
 To run the code :
 ```bash
+cd siamese/ 
+
 python duplicate_finder.py -r <training_directory> -t <test_directory>
 ```
 The results will be written to output.txt in the current directory.
