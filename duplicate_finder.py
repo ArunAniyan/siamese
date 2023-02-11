@@ -1,17 +1,9 @@
-from __future__ import print_function
-
 """
-Solution for SARAO Data Science Technical Challenge
-===================================================
+"Find the needle from the haystack"
 
 Author        : Arun Aniyan
-Institution   : SKA SA/ RATT
 Contact       : aka.bhagya@gmail.com
-Date          : 24-04-18
-Version       : V.1.0
-Compatibility : Python 2.7 & 3
-
-" Find the needle from the haystack"
+Version       : V.2.0
 
 Takes in a set of reference or training images from a single
 directory and searches same / similar images from another directory.
@@ -24,30 +16,29 @@ The results will be written to output.txt in the current directory.
 
 Result format : <Test Image>, <Duplicates..,>
 
-Requirements:
-* Imagehash == 4.0
-* Pillow == 4.1.1
-
-
 """
 
 
 """ Imports """
 
 import argparse
+import os
 from time import time
+
 import imagehash
 from PIL import Image
-import os
 
-""" Useful Functions """
-
+""" Helper Functions """
 
 # Traverse Directory and get list of files
 def traverse_dir(dirname):
     fl_list = []
     for filename in os.listdir(dirname):
-        if filename.endswith(".jpg") or filename.endswith(".png") or filename.endswith(".jpeg"):
+        if (
+            filename.endswith(".jpg")
+            or filename.endswith(".png")
+            or filename.endswith(".jpeg")
+        ):
             fl_list.append(filename)
         else:
             continue
@@ -64,10 +55,14 @@ def hasher(basedir, files):
     ddb = ddb.fromkeys(files)
     for infile in list(pdb.keys()):
         try:
-            pdb[infile] = imagehash.phash(Image.open(os.path.join(basedir, infile)))  # pHash
-            ddb[infile] = imagehash.dhash(Image.open(os.path.join(basedir, infile)))  # dHash
+            pdb[infile] = imagehash.phash(
+                Image.open(os.path.join(basedir, infile))
+            )  # pHash
+            ddb[infile] = imagehash.dhash(
+                Image.open(os.path.join(basedir, infile))
+            )  # dHash
         except:
-            print (('Error with file %s in %s')%(infile,basedir))
+            print(f"Error with file {infile} in {basedir}")
 
     return pdb, ddb
 
@@ -91,28 +86,35 @@ def find_duplicates(traindb, testdb):
 
 # Pretty Reformating - Remove unwanted characters from list
 def reformat(reflist, duplist):
-    l = reflist + ' ' + str(duplist)
-    l = l.replace('[', '')
-    l = l.replace(']', '')
-    l = l.replace("'", '')
-    l = l.replace(",", '')
-    l = l.replace(" ", ',')
+    l = reflist + " " + str(duplist)
+    l = l.replace("[", "")
+    l = l.replace("]", "")
+    l = l.replace("'", "")
+    l = l.replace(",", "")
+    l = l.replace(" ", ",")
     return l
 
 
 """ Main """
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     ap = argparse.ArgumentParser()
-    ap.add_argument("-r", "--train_directory", required=True, help="Location of reference / train images")
-    ap.add_argument("-t", "--test_directory", required=True, help="Location of test images")
+    ap.add_argument(
+        "-r",
+        "--train_directory",
+        required=True,
+        help="Location of reference / train images",
+    )
+    ap.add_argument(
+        "-t", "--test_directory", required=True, help="Location of test images"
+    )
     args = vars(ap.parse_args())
 
-    refdir = args['train_directory']
-    testdir = args['test_directory']
+    refdir = args["train_directory"]
+    testdir = args["test_directory"]
 
-    start_time = time() # Start time for calculations
+    start_time = time()  # Start time for calculations
 
     # Get file list
     ref_files = traverse_dir(refdir)
@@ -128,10 +130,9 @@ if __name__ == '__main__':
 
     # Exit of no copies are found
     if (len(p_originals) == 0) or (len(d_originals) == 0):
-        print('No duplicates found...')
-        print(('Search Time was %f seconds') % (time() - start_time))
+        print("No duplicates found...")
+        print(f"Search Time was {(time() - start_time)} seconds")
         exit(0)
-
 
     # Names of unique originals
     originals = p_originals or d_originals
@@ -140,17 +141,14 @@ if __name__ == '__main__':
     # Name of unique duplicate files
     duplicates = p_duplicates or d_duplicates
 
-    end_time = time() # End time for calculations
+    end_time = time()  # End time for calculations
 
     # Save results to output.txt
     for i in range(0, len(originals)):
         text = reformat(originals[i], duplicates[i])
         with open("output.txt", "a") as text_file:
-            text_file.write(text + '\n')
+            text_file.write(text + "\n")
 
-    print(('Took %f seconds for search.') %(end_time - start_time))
-    print(('Found duplicates for %d images.') %(len(originals)))
-    print('Result written to output.txt')
-
-
-
+    print(f"Took {(end_time - start_time)} seconds for search.")
+    print(f"Found duplicates for {len(originals)} images.")
+    print("Result written to output.txt")
